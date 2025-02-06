@@ -18,6 +18,21 @@
 #include "../lib/bigInteger.h"
 #include "../lib/bigUnsigned.h"
 
+BigInteger mcd(const BigInteger& a, const BigInteger& b) {
+  // Aseguramos que trabajamos con valores positivos
+  BigInteger x = a.isNegative() ? -a : a;
+  BigInteger y = b.isNegative() ? -b : b;
+
+  // Algoritmo de Euclides
+  while (y != BigInteger(0)) {
+    BigInteger temp = y;
+    y = x % y;  // Obtenemos el residuo
+    x = temp;   // Actualizamos x con y
+  }
+
+  return x;  // Cuando y sea 0, x es el MCD
+}
+
 int main() {
   // Crear dos números grandes a partir de cadenas
   BigUnsigned num1((const unsigned char*)"123456");
@@ -70,13 +85,13 @@ int main() {
   BigInteger a("-48");
   BigInteger b("18");
 
-  std::cout << "MCD de " << a << " y " << b << " es: " << BigInteger::mcd(a, b)
+  std::cout << "MCD de " << a << " y " << b << " es: " << mcd(a, b)
             << std::endl;
 
   BigInteger c("12345678901234567890");
   BigInteger d("-98765432109876543210");
 
-  std::cout << "MCD de " << c << " y " << d << " es: " << BigInteger::mcd(c, d)
+  std::cout << "MCD de " << c << " y " << d << " es: " << mcd(c, d)
             << std::endl;
 
   return 0;

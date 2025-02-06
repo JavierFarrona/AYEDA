@@ -61,9 +61,6 @@ class BigInteger {
   std::string toString() const;  // Convierte BigInteger a string
   bool isNegative() const;       // Verifica si es negativo
 
-  // Método para calcular el máximo común divisor (MCD)
-  static BigInteger mcd(const BigInteger& a, const BigInteger& b);
-
  private:
   BigUnsigned magnitude_;  // Almacena el valor absoluto del número
   bool negative_;          // Determina si el número es negativo

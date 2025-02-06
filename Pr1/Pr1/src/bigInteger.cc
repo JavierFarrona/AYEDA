@@ -151,18 +151,3 @@ BigInteger BigInteger::operator-() const {
   result.negative_ = !negative_;  // Cambiar el signo
   return result;
 }
-
-BigInteger BigInteger::mcd(const BigInteger& a, const BigInteger& b) {
-  // Aseguramos que trabajamos con valores positivos
-  BigInteger x = a.isNegative() ? -a : a;
-  BigInteger y = b.isNegative() ? -b : b;
-
-  // Algoritmo de Euclides
-  while (y != BigInteger(0)) {
-    BigInteger temp = y;
-    y = x % y;  // Obtenemos el residuo
-    x = temp;   // Actualizamos x con y
-  }
-
-  return x;  // Cuando y sea 0, x es el MCD
-}

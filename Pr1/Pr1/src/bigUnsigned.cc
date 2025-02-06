@@ -15,10 +15,19 @@
 
 #include "../lib/BigUnsigned.h"
 
-// Constructor por defecto: inicializa un BigUnsigned vacío (representa 0)
+/**
+ * @brief Construct a new Big Unsigned:: Big Unsigned object
+ *
+ */
+
 BigUnsigned::BigUnsigned() : número_(1, 0) {}
 
-// Constructor con unsigned char* (cadena de caracteres)
+/**
+ * @brief Construct a new Big Unsigned:: Big Unsigned object
+ *
+ * @param str
+ */
+
 BigUnsigned::BigUnsigned(const unsigned char* str) {
   // Convertimos el input de cadena a vector de dígitos
   while (*str) {
@@ -42,6 +51,13 @@ BigUnsigned& BigUnsigned::operator=(const BigUnsigned& other) {
   return *this;
 }
 
+/**
+ * @brief
+ *
+ * @param os
+ * @param number
+ * @return std::ostream&
+ */
 // Sobrecarga de operador de inserción (<<) para salida
 std::ostream& operator<<(std::ostream& os, const BigUnsigned& number) {
   for (auto it = number.número_.rbegin(); it != number.número_.rend(); ++it) {
@@ -50,7 +66,13 @@ std::ostream& operator<<(std::ostream& os, const BigUnsigned& number) {
   return os;
 }
 
-// Sobrecarga de operador de extracción (>>) para entrada
+/**
+ * @brief
+ *
+ * @param is
+ * @param number
+ * @return std::istream&
+ */
 std::istream& operator>>(std::istream& is, BigUnsigned& number) {
   std::string input;
   is >> input;
@@ -183,7 +205,8 @@ BigUnsigned BigUnsigned::operator-(const BigUnsigned& other) const {
     throw std::invalid_argument("Cannot subtract: result would be negative.");
   }
 
-  BigUnsigned result(*this);  // Creamos un nuevo objeto "result" basado en "this"
+  BigUnsigned result(
+      *this);  // Creamos un nuevo objeto "result" basado en "this"
   unsigned char borrow = 0;
 
   for (size_t i = 0; i < result.número_.size(); ++i) {

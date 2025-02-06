@@ -183,8 +183,7 @@ BigUnsigned BigUnsigned::operator-(const BigUnsigned& other) const {
     throw std::invalid_argument("Cannot subtract: result would be negative.");
   }
 
-  BigUnsigned result(
-      *this);  // Creamos un nuevo objeto "result" basado en "this"
+  BigUnsigned result(*this);  // Creamos un nuevo objeto "result" basado en "this"
   unsigned char borrow = 0;
 
   for (size_t i = 0; i < result.número_.size(); ++i) {

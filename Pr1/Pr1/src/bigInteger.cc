@@ -1,3 +1,18 @@
+/**
+ * Universidad de La Laguna
+ * Escuela Superior de Ingeniería y Tecnología
+ * Grado en Ingeniería Informática
+ * Asignatura: Algoritmos y Estructuras de datos Avanzadas
+ * Curso: 2º
+ * C:\Users\javie\Documents\GitHub\AYEDA\Pr1\Pr1\lib
+ * Autor: Javier Farrona Cabrera
+ * Correo: alu0101541983@ull.edu.es
+ * Fecha 06 Feb 2025
+ * Archivo: bigInteger.cc
+ * Referencias:
+ *     Enunciado de la práctica
+ */
+
 #include "../lib/BigInteger.h"
 
 #include <algorithm>

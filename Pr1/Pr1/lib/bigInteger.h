@@ -16,9 +16,6 @@
 #ifndef BIGINTEGER_H
 #define BIGINTEGER_H
 
-#include <iostream>
-#include <string>
-
 #include "../lib/BigUnsigned.h"  // Incluimos BigUnsigned como parte de BigInteger
 
 class BigInteger {

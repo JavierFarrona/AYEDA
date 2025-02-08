@@ -35,8 +35,8 @@ BigInteger mcd(const BigInteger& a, const BigInteger& b) {
 
 int main() {
   // Crear dos números grandes a partir de cadenas
-  BigUnsigned num1((const unsigned char*)"123456");
-  BigUnsigned num2((const unsigned char*)"789");
+  BigUnsigned num1((const unsigned char*)"50");
+  BigUnsigned num2((const unsigned char*)"5");
 
   // Mostrar números iniciales
   std::cout << "Número 1: " << num1 << std::endl;

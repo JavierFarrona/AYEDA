@@ -61,7 +61,7 @@ class BigUnsigned {
   void removeLeadingZeros();     // Elimina ceros a la izquierda
 
  private:
-  std::vector<unsigned char> número_;
+  std::vector<unsigned char> number_;
 };
 
 #endif  // BIGUNSIGNED_H

@@ -1,4 +1,7 @@
 /**
+ * @file main.cc
+ * @brief Main file for demonstrating the usage of BigInteger and BigUnsigned classes.
+ * 
  * Universidad de La Laguna
  * Escuela Superior de Ingeniería y Tecnología
  * Grado en Ingeniería Informática
@@ -8,7 +11,6 @@
  * Autor: Javier Farrona Cabrera
  * Correo: alu0101541983@ull.edu.es
  * Fecha 06 Feb 2025
- * Archivo: main.cc
  * Referencias:
  *     Enunciado de la práctica
  */
@@ -18,35 +20,42 @@
 #include "../lib/bigInteger.h"
 #include "../lib/bigUnsigned.h"
 
+/**
+ * @brief Calculate the greatest common divisor (GCD) of two BigInteger values using the Euclidean algorithm.
+ * 
+ * @param a The first BigInteger value.
+ * @param b The second BigInteger value.
+ * @return BigInteger The GCD of the two values.
+ */
 BigInteger mcd(const BigInteger& a, const BigInteger& b) {
-  // Aseguramos que trabajamos con valores positivos
+  // Ensure we work with positive values
   BigInteger x = a.isNegative() ? -a : a;
   BigInteger y = b.isNegative() ? -b : b;
 
-  // Algoritmo de Euclides
+  // Euclidean algorithm
   while (y != BigInteger(0)) {
     BigInteger temp = y;
-    y = x % y;  // Obtenemos el residuo
-    x = temp;   // Actualizamos x con y
+    y = x % y;  // Get the remainder
+    x = temp;   // Update x with y
   }
 
-  return x;  // Cuando y sea 0, x es el MCD
+  return x;  // When y is 0, x is the GCD
 }
 
 int main() {
-  // Crear dos números grandes a partir de cadenas
+  // Create two large numbers from strings
   BigUnsigned num1((const unsigned char*)"50");
   BigUnsigned num2((const unsigned char*)"5");
 
-  // Mostrar números iniciales
+  // Display initial numbers
   std::cout << "Número 1: " << num1 << std::endl;
   std::cout << "Número 2: " << num2 << std::endl;
 
-  // Suma de los dos números
+  // Sum of the two numbers
   BigUnsigned suma = num1 + num2;
   std::cout << "Suma: " << suma << std::endl;
 
-  // Comparación de los números
+  // Comparison of the numbers
   if (num1 < num2) {
     std::cout << "Número 1 es menor que Número 2." << std::endl;
   } else if (num1 == num2) {
@@ -55,33 +64,34 @@ int main() {
     std::cout << "Número 1 es mayor que Número 2." << std::endl;
   }
 
-  // Incremento y decremento
+  // Increment and decrement
   std::cout << "Pre-incremento de Número 1: " << ++num1 << std::endl;
   std::cout << "Post-incremento de Número 2: " << num2++ << std::endl;
   std::cout << "Número 2 después del post-incremento: " << num2 << std::endl;
 
-  // Resta de los números
+  // Subtraction of the numbers
   BigUnsigned resta = num1 - num2;
   std::cout << "Resta (Número 1 - Número 2): " << resta << std::endl;
 
-  // Multiplicación
+  // Multiplication
   BigUnsigned product = num1 * num2;
   std::cout << "Producto: " << product << std::endl;
 
-  // División
+  // Division
   BigUnsigned quotient = num1 / num2;
   std::cout << "Cociente: " << quotient << std::endl;
 
-  // Módulo
+  // Modulo
   BigUnsigned remainder = num1 % num2;
   std::cout << "Residuo: " << remainder << std::endl;
 
-  // Entrada desde el usuario
+  // User input
   BigUnsigned num3;
   std::cout << "Introduce un número grande: ";
   std::cin >> num3;
   std::cout << "El número que ingresaste fue: " << num3 << std::endl;
 
+  // Calculate GCD of two BigInteger values
   BigInteger a("-48");
   BigInteger b("18");
 

@@ -1,7 +1,8 @@
 /**
  * @file main.cc
- * @brief Main file for demonstrating the usage of BigInteger and BigUnsigned classes.
- * 
+ * @brief Main file for demonstrating the usage of BigInteger and BigUnsigned
+ * classes.
+ *
  * Universidad de La Laguna
  * Escuela Superior de Ingeniería y Tecnología
  * Grado en Ingeniería Informática
@@ -21,8 +22,9 @@
 #include "../lib/bigUnsigned.h"
 
 /**
- * @brief Calculate the greatest common divisor (GCD) of two BigInteger values using the Euclidean algorithm.
- * 
+ * @brief Calculate the greatest common divisor (GCD) of two BigInteger values
+ * using the Euclidean algorithm.
+ *
  * @param a The first BigInteger value.
  * @param b The second BigInteger value.
  * @return BigInteger The GCD of the two values.
@@ -92,8 +94,8 @@ int main() {
   std::cout << "El número que ingresaste fue: " << num3 << std::endl;
 
   // Calculate GCD of two BigInteger values
-  BigInteger a("-48");
-  BigInteger b("18");
+  BigInteger a("15");
+  BigInteger b("5");
 
   std::cout << "MCD de " << a << " y " << b << " es: " << mcd(a, b)
             << std::endl;

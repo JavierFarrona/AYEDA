@@ -1,7 +1,8 @@
 /**
  * @file bigUnsigned.cc
- * @brief Implementation of the BigUnsigned class for handling large unsigned integers.
- * 
+ * @brief Implementation of the BigUnsigned class for handling large unsigned
+ * integers.
+ *
  * Universidad de La Laguna
  * Escuela Superior de Ingeniería y Tecnología
  * Grado en Ingeniería Informática
@@ -24,7 +25,7 @@ BigUnsigned::BigUnsigned() : number_(1, 0) {}
 
 /**
  * @brief Construct a new BigUnsigned object from a string of digits.
- * 
+ *
  * @param str A C-style string containing only digit characters.
  * @throws std::invalid_argument if the string contains non-digit characters.
  */
@@ -42,14 +43,14 @@ BigUnsigned::BigUnsigned(const unsigned char* str) {
 
 /**
  * @brief Copy constructor for BigUnsigned.
- * 
+ *
  * @param other The BigUnsigned object to copy from.
  */
 BigUnsigned::BigUnsigned(const BigUnsigned& other) : number_(other.number_) {}
 
 /**
  * @brief Assignment operator for BigUnsigned.
- * 
+ *
  * @param other The BigUnsigned object to assign from.
  * @return BigUnsigned& A reference to the assigned object.
  */
@@ -62,7 +63,7 @@ BigUnsigned& BigUnsigned::operator=(const BigUnsigned& other) {
 
 /**
  * @brief Overload of the insertion operator for outputting BigUnsigned objects.
- * 
+ *
  * @param os The output stream.
  * @param number The BigUnsigned object to output.
  * @return std::ostream& The output stream.
@@ -76,7 +77,7 @@ std::ostream& operator<<(std::ostream& os, const BigUnsigned& number) {
 
 /**
  * @brief Overload of the extraction operator for inputting BigUnsigned objects.
- * 
+ *
  * @param is The input stream.
  * @param number The BigUnsigned object to input into.
  * @return std::istream& The input stream.
@@ -104,7 +105,7 @@ std::istream& operator>>(std::istream& is, BigUnsigned& number) {
 
 /**
  * @brief Equality comparison operator for BigUnsigned.
- * 
+ *
  * @param other The BigUnsigned object to compare with.
  * @return true if the objects are equal.
  * @return false if the objects are not equal.
@@ -115,7 +116,7 @@ bool BigUnsigned::operator==(const BigUnsigned& other) const {
 
 /**
  * @brief Less-than comparison operator for BigUnsigned.
- * 
+ *
  * @param lhs The left-hand side BigUnsigned object.
  * @param rhs The right-hand side BigUnsigned object.
  * @return true if lhs is less than rhs.
@@ -138,7 +139,7 @@ bool operator<(const BigUnsigned& lhs, const BigUnsigned& rhs) {
 
 /**
  * @brief Less-than or equal-to comparison operator for BigUnsigned.
- * 
+ *
  * @param a The left-hand side BigUnsigned object.
  * @param b The right-hand side BigUnsigned object.
  * @return true if a is less than or equal to b.
@@ -150,7 +151,7 @@ bool operator<=(const BigUnsigned& a, const BigUnsigned& b) {
 
 /**
  * @brief Greater-than comparison operator for BigUnsigned.
- * 
+ *
  * @param a The left-hand side BigUnsigned object.
  * @param b The right-hand side BigUnsigned object.
  * @return true if a is greater than b.
@@ -160,7 +161,7 @@ bool operator>(const BigUnsigned& a, const BigUnsigned& b) { return !(a <= b); }
 
 /**
  * @brief Greater-than or equal-to comparison operator for BigUnsigned.
- * 
+ *
  * @param a The left-hand side BigUnsigned object.
  * @param b The right-hand side BigUnsigned object.
  * @return true if a is greater than or equal to b.
@@ -170,7 +171,7 @@ bool operator>=(const BigUnsigned& a, const BigUnsigned& b) { return !(a < b); }
 
 /**
  * @brief Pre-increment operator for BigUnsigned.
- * 
+ *
  * @return BigUnsigned& A reference to the incremented object.
  */
 BigUnsigned& BigUnsigned::operator++() {
@@ -189,7 +190,7 @@ BigUnsigned& BigUnsigned::operator++() {
 
 /**
  * @brief Post-increment operator for BigUnsigned.
- * 
+ *
  * @return BigUnsigned The value before incrementing.
  */
 BigUnsigned BigUnsigned::operator++(int) {
@@ -200,7 +201,7 @@ BigUnsigned BigUnsigned::operator++(int) {
 
 /**
  * @brief Pre-decrement operator for BigUnsigned.
- * 
+ *
  * @return BigUnsigned& A reference to the decremented object.
  * @throws std::underflow_error if the value is decremented below 0.
  */
@@ -228,7 +229,7 @@ BigUnsigned& BigUnsigned::operator--() {
 
 /**
  * @brief Post-decrement operator for BigUnsigned.
- * 
+ *
  * @return BigUnsigned The value before decrementing.
  */
 BigUnsigned BigUnsigned::operator--(int) {
@@ -239,7 +240,7 @@ BigUnsigned BigUnsigned::operator--(int) {
 
 /**
  * @brief Addition operator for BigUnsigned.
- * 
+ *
  * @param lhs The left-hand side BigUnsigned object.
  * @param rhs The right-hand side BigUnsigned object.
  * @return BigUnsigned The result of the addition.
@@ -270,7 +271,7 @@ BigUnsigned operator+(const BigUnsigned& lhs, const BigUnsigned& rhs) {
 
 /**
  * @brief Subtraction operator for BigUnsigned.
- * 
+ *
  * @param other The BigUnsigned object to subtract.
  * @return BigUnsigned The result of the subtraction.
  * @throws std::invalid_argument if the result would be negative.
@@ -280,8 +281,7 @@ BigUnsigned BigUnsigned::operator-(const BigUnsigned& other) const {
     throw std::invalid_argument("Cannot subtract: result would be negative.");
   }
 
-  BigUnsigned result(
-      *this);  // Create a new object "result" based on "this"
+  BigUnsigned result(*this);  // Create a new object "result" based on "this"
   unsigned char borrow = 0;
 
   for (size_t i = 0; i < result.number_.size(); ++i) {
@@ -309,7 +309,7 @@ BigUnsigned BigUnsigned::operator-(const BigUnsigned& other) const {
 
 /**
  * @brief Multiplication operator for BigUnsigned.
- * 
+ *
  * @param other The BigUnsigned object to multiply with.
  * @return BigUnsigned The result of the multiplication.
  */
@@ -346,7 +346,7 @@ BigUnsigned BigUnsigned::operator*(const BigUnsigned& other) const {
 
 /**
  * @brief Division operator for BigUnsigned.
- * 
+ *
  * @param dividend The BigUnsigned object to divide.
  * @param divisor The BigUnsigned object to divide by.
  * @return BigUnsigned The result of the division.
@@ -392,7 +392,7 @@ BigUnsigned operator/(const BigUnsigned& dividend, const BigUnsigned& divisor) {
 
 /**
  * @brief Modulus operator for BigUnsigned.
- * 
+ *
  * @param divisor The BigUnsigned object to divide by.
  * @return BigUnsigned The remainder of the division.
  * @throws std::invalid_argument if the divisor is zero.
@@ -433,7 +433,7 @@ void BigUnsigned::removeLeadingZeros() {
 
 /**
  * @brief Convert the BigUnsigned number to a string representation.
- * 
+ *
  * @return std::string The string representation of the number.
  */
 std::string BigUnsigned::toString() const {

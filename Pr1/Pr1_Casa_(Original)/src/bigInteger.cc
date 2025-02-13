@@ -1,7 +1,8 @@
 /**
  * @file bigInteger.cc
- * @brief Implementation of the BigInteger class for handling large signed integers.
- * 
+ * @brief Implementation of the BigInteger class for handling large signed
+ * integers.
+ *
  * Universidad de La Laguna
  * Escuela Superior de Ingeniería y Tecnología
  * Grado en Ingeniería Informática
@@ -29,7 +30,7 @@ BigInteger::BigInteger() : magnitude_(), negative_(false) {}
 
 /**
  * @brief Construct a new BigInteger object from a BigUnsigned value.
- * 
+ *
  * @param value The BigUnsigned value to initialize the BigInteger.
  */
 BigInteger::BigInteger(const BigUnsigned& value)
@@ -37,7 +38,7 @@ BigInteger::BigInteger(const BigUnsigned& value)
 
 /**
  * @brief Construct a new BigInteger object from an integer value.
- * 
+ *
  * @param value The integer value to initialize the BigInteger.
  */
 BigInteger::BigInteger(int value) : magnitude_(), negative_(value < 0) {
@@ -48,7 +49,7 @@ BigInteger::BigInteger(int value) : magnitude_(), negative_(value < 0) {
 
 /**
  * @brief Construct a new BigInteger object from a string representation.
- * 
+ *
  * @param value The string representation of the integer.
  * @throws std::invalid_argument if the input string is invalid.
  */
@@ -71,7 +72,7 @@ BigInteger::BigInteger(const std::string& value)
 
 /**
  * @brief Equality comparison operator for BigInteger.
- * 
+ *
  * @param other The BigInteger object to compare with.
  * @return true if the objects are equal.
  * @return false if the objects are not equal.
@@ -82,7 +83,7 @@ bool BigInteger::operator==(const BigInteger& other) const {
 
 /**
  * @brief Inequality comparison operator for BigInteger.
- * 
+ *
  * @param other The BigInteger object to compare with.
  * @return true if the objects are not equal.
  * @return false if the objects are equal.
@@ -93,7 +94,7 @@ bool BigInteger::operator!=(const BigInteger& other) const {
 
 /**
  * @brief Less-than comparison operator for BigInteger.
- * 
+ *
  * @param other The BigInteger object to compare with.
  * @return true if this object is less than the other.
  * @return false otherwise.
@@ -111,7 +112,7 @@ bool BigInteger::operator<(const BigInteger& other) const {
 
 /**
  * @brief Less-than or equal-to comparison operator for BigInteger.
- * 
+ *
  * @param other The BigInteger object to compare with.
  * @return true if this object is less than or equal to the other.
  * @return false otherwise.
@@ -122,7 +123,7 @@ bool BigInteger::operator<=(const BigInteger& other) const {
 
 /**
  * @brief Greater-than comparison operator for BigInteger.
- * 
+ *
  * @param other The BigInteger object to compare with.
  * @return true if this object is greater than the other.
  * @return false otherwise.
@@ -133,7 +134,7 @@ bool BigInteger::operator>(const BigInteger& other) const {
 
 /**
  * @brief Greater-than or equal-to comparison operator for BigInteger.
- * 
+ *
  * @param other The BigInteger object to compare with.
  * @return true if this object is greater than or equal to the other.
  * @return false otherwise.
@@ -146,7 +147,7 @@ bool BigInteger::operator>=(const BigInteger& other) const {
 
 /**
  * @brief Addition operator for BigInteger.
- * 
+ *
  * @param other The BigInteger object to add.
  * @return BigInteger The result of the addition.
  */
@@ -170,7 +171,7 @@ BigInteger BigInteger::operator+(const BigInteger& other) const {
 
 /**
  * @brief Subtraction operator for BigInteger.
- * 
+ *
  * @param other The BigInteger object to subtract.
  * @return BigInteger The result of the subtraction.
  */
@@ -182,7 +183,7 @@ BigInteger BigInteger::operator-(const BigInteger& other) const {
 
 /**
  * @brief Multiplication operator for BigInteger.
- * 
+ *
  * @param other The BigInteger object to multiply with.
  * @return BigInteger The result of the multiplication.
  */
@@ -194,7 +195,7 @@ BigInteger BigInteger::operator*(const BigInteger& other) const {
 
 /**
  * @brief Division operator for BigInteger.
- * 
+ *
  * @param other The BigInteger object to divide by.
  * @return BigInteger The result of the division.
  * @throws std::invalid_argument if the divisor is zero.
@@ -212,7 +213,7 @@ BigInteger BigInteger::operator/(const BigInteger& other) const {
 
 /**
  * @brief Modulus operator for BigInteger.
- * 
+ *
  * @param other The BigInteger object to divide by.
  * @return BigInteger The remainder of the division.
  * @throws std::invalid_argument if the divisor is zero.
@@ -231,7 +232,7 @@ BigInteger BigInteger::operator%(const BigInteger& other) const {
 
 /**
  * @brief Convert the BigInteger number to a string representation.
- * 
+ *
  * @return std::string The string representation of the number.
  */
 std::string BigInteger::toString() const {
@@ -242,7 +243,7 @@ std::string BigInteger::toString() const {
 
 /**
  * @brief Check if the BigInteger is negative.
- * 
+ *
  * @return true if the number is negative.
  * @return false otherwise.
  */
@@ -257,7 +258,7 @@ void BigInteger::removeLeadingZeros() { magnitude_.removeLeadingZeros(); }
 
 /**
  * @brief Overload of the insertion operator for outputting BigInteger objects.
- * 
+ *
  * @param out The output stream.
  * @param bigint The BigInteger object to output.
  * @return std::ostream& The output stream.
@@ -268,7 +269,7 @@ std::ostream& operator<<(std::ostream& out, const BigInteger& bigint) {
 
 /**
  * @brief Overload of the extraction operator for inputting BigInteger objects.
- * 
+ *
  * @param in The input stream.
  * @param bigint The BigInteger object to input into.
  * @return std::istream& The input stream.
@@ -282,7 +283,7 @@ std::istream& operator>>(std::istream& in, BigInteger& bigint) {
 
 /**
  * @brief Unary negation operator for BigInteger.
- * 
+ *
  * @return BigInteger The negated value.
  */
 BigInteger BigInteger::operator-() const {

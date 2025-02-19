@@ -21,8 +21,10 @@ class BigUnsigned {
     BigUnsigned<Base>& operator=(const BigUnsigned<Base>&);
 
     //Flujos de entrada y salida
-    friend std::ostream& operator<<(std::ostream& os, const BigUnsigned<Base>& num);
-    friend std::istream& operator>>(std::istream& is, BigUnsigned<Base>& num);
+    template <unsigned B>
+    friend std::ostream& operator<<(std::ostream& os, const BigUnsigned<B>& num);
+    template <unsigned B>
+    friend std::istream& operator>>(std::istream& is, BigUnsigned<B>& num);
 
     //Comparación
     bool operator==(const BigUnsigned<Base>& other) const;

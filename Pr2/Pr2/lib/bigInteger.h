@@ -23,8 +23,10 @@ class BigInteger {
     BigInteger<Base> operator-() const;
 
     // Flujos de entrada y salida
-    friend std::ostream& operator<<(std::ostream& os, const BigInteger<Base>& num);
-    friend std::istream& operator>>(std::istream& is, BigInteger<Base>& num);
+    template <unsigned B>
+    friend std::ostream& operator<<(std::ostream& os, const BigInteger<B>& num);
+    template <unsigned B>
+    friend std::istream& operator>>(std::istream& is, BigInteger<B>& num);
 
     // Comparación
     bool operator==(const BigInteger<Base>& other) const;

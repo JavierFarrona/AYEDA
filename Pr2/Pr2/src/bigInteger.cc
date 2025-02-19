@@ -17,14 +17,31 @@ BigInteger<Base>::BigInteger(int value) : magnitude_(), negative_(value < 0) {
 
 // Constructor desde string
 template <unsigned char Base>
-BigInteger<Base>::BigInteger(const std::string& value) : magnitude_(), negative_(false) {
-  if (value.empty()) throw std::invalid_argument("Invalid input string");
+BigInteger<Base>::BigInteger(const std::string& str) : magnitude_(), negative_(false) {
+  if (str.empty()) throw std::invalid_argument("Invalid input string");
   size_t start = 0;
-  if (value[0] == '-') {
+  if (str[0] == '-') {
     negative_ = true;
     start = 1;
   }
-  magnitude_ = BigUnsigned<Base>(reinterpret_cast<const unsigned char*>(value.substr(start).c_str()));
+  magnitude_ = BigUnsigned<Base>(reinterpret_cast<const unsigned char*>(str.substr(start).c_str()));
+}
+
+// Constructor de copia
+template <unsigned char Base>
+BigInteger<Base>::BigInteger(const BigInteger<Base>& other) {
+    magnitude_ = other.magnitude_;
+    negative_ = other.negative_;
+}
+
+// Operador de asignación
+template <unsigned char Base>
+BigInteger<Base>& BigInteger<Base>::operator=(const BigInteger<Base>& other) {
+    if (this != &other) {
+        magnitude_ = other.magnitude_;
+        negative_ = other.negative_;
+    }
+    return *this;
 }
 
 template <unsigned char Base>
@@ -122,9 +139,13 @@ void BigInteger<Base>::removeLeadingZeros() {
   magnitude_.removeLeadingZeros();
 }
 
-template <unsigned char Base>
-std::ostream& operator<<(std::ostream& out, const BigInteger<Base>& bigint) {
-  return out << bigint.toString();
+/*
+template<unsigned char Base>
+std::ostream& operator<<(std::ostream& os, const BigInteger<Base>& num) {
+    // Aquí debes implementar la lógica para convertir el objeto BigInteger a una cadena
+    // y enviarla al flujo de salida. Esto es solo un ejemplo básico.
+    os << num.toString(); // Asumiendo que tienes un método toString() en BigInteger
+    return os;
 }
 
 template <unsigned char Base>
@@ -134,7 +155,7 @@ std::istream& operator>>(std::istream& in, BigInteger<Base>& bigint) {
   bigint = BigInteger<Base>(input);
   return in;
 }
-
+*/
 template <unsigned char Base>
 BigInteger<Base> BigInteger<Base>::operator-() const {
   BigInteger result = *this;
@@ -311,3 +332,7 @@ BigInteger<2> BigInteger<2>::complement_2() const {
   }
   return ++result;
 }
+
+template class BigInteger<8>;
+template class BigInteger<10>;
+template class BigInteger<16>;

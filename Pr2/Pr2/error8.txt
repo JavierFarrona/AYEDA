@@ -1,0 +1,250 @@
+In file included from main.cc:4:
+../lib/bigRational.h:23:15: error: declaration of ‘operator==’ as non-function
+   23 |   friend bool operator== <>(const BigRational<Base>& lhs, const BigRational<Base>& rhs);
+      |               ^~~~~~~~
+../lib/bigRational.h:23:23: error: expected ‘;’ at end of member declaration
+   23 |   friend bool operator== <>(const BigRational<Base>& lhs, const BigRational<Base>& rhs);
+      |                       ^~
+      |                         ;
+../lib/bigRational.h:23:26: error: expected unqualified-id before ‘<’ token
+   23 |   friend bool operator== <>(const BigRational<Base>& lhs, const BigRational<Base>& rhs);
+      |                          ^
+../lib/bigRational.h:24:15: error: declaration of ‘operator<’ as non-function
+   24 |   friend bool operator< <>(const BigRational<Base>& lhs, const BigRational<Base>& rhs);
+      |               ^~~~~~~~
+../lib/bigRational.h:24:23: error: expected ‘;’ at end of member declaration
+   24 |   friend bool operator< <>(const BigRational<Base>& lhs, const BigRational<Base>& rhs);
+      |                       ^
+      |                        ;
+../lib/bigRational.h:24:25: error: expected unqualified-id before ‘<’ token
+   24 |   friend bool operator< <>(const BigRational<Base>& lhs, const BigRational<Base>& rhs);
+      |                         ^
+In file included from bigRational.cc:1:
+../lib/bigRational.h:23:15: error: declaration of ‘operator==’ as non-function
+   23 |   friend bool operator== <>(const BigRational<Base>& lhs, const BigRational<Base>& rhs);
+      |               ^~~~~~~~
+../lib/bigRational.h:23:23: error: expected ‘;’ at end of member declaration
+   23 |   friend bool operator== <>(const BigRational<Base>& lhs, const BigRational<Base>& rhs);
+      |                       ^~
+      |                         ;
+../lib/bigRational.h:23:26: error: expected unqualified-id before ‘<’ token
+   23 |   friend bool operator== <>(const BigRational<Base>& lhs, const BigRational<Base>& rhs);
+      |                          ^
+../lib/bigRational.h:24:15: error: declaration of ‘operator<’ as non-function
+   24 |   friend bool operator< <>(const BigRational<Base>& lhs, const BigRational<Base>& rhs);
+      |               ^~~~~~~~
+../lib/bigRational.h:24:23: error: expected ‘;’ at end of member declaration
+   24 |   friend bool operator< <>(const BigRational<Base>& lhs, const BigRational<Base>& rhs);
+      |                       ^
+      |                        ;
+../lib/bigRational.h:24:25: error: expected unqualified-id before ‘<’ token
+   24 |   friend bool operator< <>(const BigRational<Base>& lhs, const BigRational<Base>& rhs);
+      |                         ^
+bigRational.cc: In instantiation of ‘bool operator==(const BigRational<Base>&, const BigRational<Base>&) [with unsigned char Base = 2]’:
+bigRational.cc:157:82:   required from here
+bigRational.cc:46:16: error: ‘BigInteger<2> BigRational<2>::numerator’ is private within this context
+   46 |     return lhs.numerator == rhs.numerator && lhs.denominator == rhs.denominator;
+      |            ~~~~^~~~~~~~~
+../lib/bigRational.h:43:20: note: declared private here
+   43 |   BigInteger<Base> numerator;
+      |                    ^~~~~~~~~
+bigRational.cc:46:33: error: ‘BigInteger<2> BigRational<2>::numerator’ is private within this context
+   46 |     return lhs.numerator == rhs.numerator && lhs.denominator == rhs.denominator;
+      |                             ~~~~^~~~~~~~~
+../lib/bigRational.h:43:20: note: declared private here
+   43 |   BigInteger<Base> numerator;
+      |                    ^~~~~~~~~
+bigRational.cc:46:50: error: ‘BigUnsigned<2> BigRational<2>::denominator’ is private within this context
+   46 |     return lhs.numerator == rhs.numerator && lhs.denominator == rhs.denominator;
+      |                                              ~~~~^~~~~~~~~~~
+../lib/bigRational.h:44:21: note: declared private here
+   44 |   BigUnsigned<Base> denominator;
+      |                     ^~~~~~~~~~~
+bigRational.cc:46:69: error: ‘BigUnsigned<2> BigRational<2>::denominator’ is private within this context
+   46 |     return lhs.numerator == rhs.numerator && lhs.denominator == rhs.denominator;
+      |                                                                 ~~~~^~~~~~~~~~~
+../lib/bigRational.h:44:21: note: declared private here
+   44 |   BigUnsigned<Base> denominator;
+      |                     ^~~~~~~~~~~
+bigRational.cc: In instantiation of ‘bool operator<(const BigRational<Base>&, const BigRational<Base>&) [with unsigned char Base = 2]’:
+bigRational.cc:158:81:   required from here
+bigRational.cc:51:16: error: ‘BigInteger<2> BigRational<2>::numerator’ is private within this context
+   51 |     return lhs.numerator * rhs.denominator < rhs.numerator * lhs.denominator;
+      |            ~~~~^~~~~~~~~
+../lib/bigRational.h:43:20: note: declared private here
+   43 |   BigInteger<Base> numerator;
+      |                    ^~~~~~~~~
+bigRational.cc:51:32: error: ‘BigUnsigned<2> BigRational<2>::denominator’ is private within this context
+   51 |     return lhs.numerator * rhs.denominator < rhs.numerator * lhs.denominator;
+      |                            ~~~~^~~~~~~~~~~
+../lib/bigRational.h:44:21: note: declared private here
+   44 |   BigUnsigned<Base> denominator;
+      |                     ^~~~~~~~~~~
+bigRational.cc:51:50: error: ‘BigInteger<2> BigRational<2>::numerator’ is private within this context
+   51 |     return lhs.numerator * rhs.denominator < rhs.numerator * lhs.denominator;
+      |                                              ~~~~^~~~~~~~~
+../lib/bigRational.h:43:20: note: declared private here
+   43 |   BigInteger<Base> numerator;
+      |                    ^~~~~~~~~
+bigRational.cc:51:66: error: ‘BigUnsigned<2> BigRational<2>::denominator’ is private within this context
+   51 |     return lhs.numerator * rhs.denominator < rhs.numerator * lhs.denominator;
+      |                                                              ~~~~^~~~~~~~~~~
+../lib/bigRational.h:44:21: note: declared private here
+   44 |   BigUnsigned<Base> denominator;
+      |                     ^~~~~~~~~~~
+bigRational.cc: In instantiation of ‘bool operator==(const BigRational<Base>&, const BigRational<Base>&) [with unsigned char Base = 8]’:
+bigRational.cc:160:82:   required from here
+bigRational.cc:46:16: error: ‘BigInteger<8> BigRational<8>::numerator’ is private within this context
+   46 |     return lhs.numerator == rhs.numerator && lhs.denominator == rhs.denominator;
+      |            ~~~~^~~~~~~~~
+../lib/bigRational.h:43:20: note: declared private here
+   43 |   BigInteger<Base> numerator;
+      |                    ^~~~~~~~~
+bigRational.cc:46:33: error: ‘BigInteger<8> BigRational<8>::numerator’ is private within this context
+   46 |     return lhs.numerator == rhs.numerator && lhs.denominator == rhs.denominator;
+      |                             ~~~~^~~~~~~~~
+../lib/bigRational.h:43:20: note: declared private here
+   43 |   BigInteger<Base> numerator;
+      |                    ^~~~~~~~~
+bigRational.cc:46:50: error: ‘BigUnsigned<8> BigRational<8>::denominator’ is private within this context
+   46 |     return lhs.numerator == rhs.numerator && lhs.denominator == rhs.denominator;
+      |                                              ~~~~^~~~~~~~~~~
+../lib/bigRational.h:44:21: note: declared private here
+   44 |   BigUnsigned<Base> denominator;
+      |                     ^~~~~~~~~~~
+bigRational.cc:46:69: error: ‘BigUnsigned<8> BigRational<8>::denominator’ is private within this context
+   46 |     return lhs.numerator == rhs.numerator && lhs.denominator == rhs.denominator;
+      |                                                                 ~~~~^~~~~~~~~~~
+../lib/bigRational.h:44:21: note: declared private here
+   44 |   BigUnsigned<Base> denominator;
+      |                     ^~~~~~~~~~~
+bigRational.cc: In instantiation of ‘bool operator<(const BigRational<Base>&, const BigRational<Base>&) [with unsigned char Base = 8]’:
+bigRational.cc:161:81:   required from here
+bigRational.cc:51:16: error: ‘BigInteger<8> BigRational<8>::numerator’ is private within this context
+   51 |     return lhs.numerator * rhs.denominator < rhs.numerator * lhs.denominator;
+      |            ~~~~^~~~~~~~~
+../lib/bigRational.h:43:20: note: declared private here
+   43 |   BigInteger<Base> numerator;
+      |                    ^~~~~~~~~
+bigRational.cc:51:32: error: ‘BigUnsigned<8> BigRational<8>::denominator’ is private within this context
+   51 |     return lhs.numerator * rhs.denominator < rhs.numerator * lhs.denominator;
+      |                            ~~~~^~~~~~~~~~~
+../lib/bigRational.h:44:21: note: declared private here
+   44 |   BigUnsigned<Base> denominator;
+      |                     ^~~~~~~~~~~
+bigRational.cc:51:50: error: ‘BigInteger<8> BigRational<8>::numerator’ is private within this context
+   51 |     return lhs.numerator * rhs.denominator < rhs.numerator * lhs.denominator;
+      |                                              ~~~~^~~~~~~~~
+../lib/bigRational.h:43:20: note: declared private here
+   43 |   BigInteger<Base> numerator;
+      |                    ^~~~~~~~~
+bigRational.cc:51:66: error: ‘BigUnsigned<8> BigRational<8>::denominator’ is private within this context
+   51 |     return lhs.numerator * rhs.denominator < rhs.numerator * lhs.denominator;
+      |                                                              ~~~~^~~~~~~~~~~
+../lib/bigRational.h:44:21: note: declared private here
+   44 |   BigUnsigned<Base> denominator;
+      |                     ^~~~~~~~~~~
+bigRational.cc: In instantiation of ‘bool operator==(const BigRational<Base>&, const BigRational<Base>&) [with unsigned char Base = 10]’:
+bigRational.cc:163:85:   required from here
+bigRational.cc:46:16: error: ‘BigInteger<10> BigRational<10>::numerator’ is private within this context
+   46 |     return lhs.numerator == rhs.numerator && lhs.denominator == rhs.denominator;
+      |            ~~~~^~~~~~~~~
+../lib/bigRational.h:43:20: note: declared private here
+   43 |   BigInteger<Base> numerator;
+      |                    ^~~~~~~~~
+bigRational.cc:46:33: error: ‘BigInteger<10> BigRational<10>::numerator’ is private within this context
+   46 |     return lhs.numerator == rhs.numerator && lhs.denominator == rhs.denominator;
+      |                             ~~~~^~~~~~~~~
+../lib/bigRational.h:43:20: note: declared private here
+   43 |   BigInteger<Base> numerator;
+      |                    ^~~~~~~~~
+bigRational.cc:46:50: error: ‘BigUnsigned<10> BigRational<10>::denominator’ is private within this context
+   46 |     return lhs.numerator == rhs.numerator && lhs.denominator == rhs.denominator;
+      |                                              ~~~~^~~~~~~~~~~
+../lib/bigRational.h:44:21: note: declared private here
+   44 |   BigUnsigned<Base> denominator;
+      |                     ^~~~~~~~~~~
+bigRational.cc:46:69: error: ‘BigUnsigned<10> BigRational<10>::denominator’ is private within this context
+   46 |     return lhs.numerator == rhs.numerator && lhs.denominator == rhs.denominator;
+      |                                                                 ~~~~^~~~~~~~~~~
+../lib/bigRational.h:44:21: note: declared private here
+   44 |   BigUnsigned<Base> denominator;
+      |                     ^~~~~~~~~~~
+bigRational.cc: In instantiation of ‘bool operator<(const BigRational<Base>&, const BigRational<Base>&) [with unsigned char Base = 10]’:
+bigRational.cc:164:84:   required from here
+bigRational.cc:51:16: error: ‘BigInteger<10> BigRational<10>::numerator’ is private within this context
+   51 |     return lhs.numerator * rhs.denominator < rhs.numerator * lhs.denominator;
+      |            ~~~~^~~~~~~~~
+../lib/bigRational.h:43:20: note: declared private here
+   43 |   BigInteger<Base> numerator;
+      |                    ^~~~~~~~~
+bigRational.cc:51:32: error: ‘BigUnsigned<10> BigRational<10>::denominator’ is private within this context
+   51 |     return lhs.numerator * rhs.denominator < rhs.numerator * lhs.denominator;
+      |                            ~~~~^~~~~~~~~~~
+../lib/bigRational.h:44:21: note: declared private here
+   44 |   BigUnsigned<Base> denominator;
+      |                     ^~~~~~~~~~~
+bigRational.cc:51:50: error: ‘BigInteger<10> BigRational<10>::numerator’ is private within this context
+   51 |     return lhs.numerator * rhs.denominator < rhs.numerator * lhs.denominator;
+      |                                              ~~~~^~~~~~~~~
+../lib/bigRational.h:43:20: note: declared private here
+   43 |   BigInteger<Base> numerator;
+      |                    ^~~~~~~~~
+bigRational.cc:51:66: error: ‘BigUnsigned<10> BigRational<10>::denominator’ is private within this context
+   51 |     return lhs.numerator * rhs.denominator < rhs.numerator * lhs.denominator;
+      |                                                              ~~~~^~~~~~~~~~~
+../lib/bigRational.h:44:21: note: declared private here
+   44 |   BigUnsigned<Base> denominator;
+      |                     ^~~~~~~~~~~
+bigRational.cc: In instantiation of ‘bool operator==(const BigRational<Base>&, const BigRational<Base>&) [with unsigned char Base = 16]’:
+bigRational.cc:166:85:   required from here
+bigRational.cc:46:16: error: ‘BigInteger<16> BigRational<16>::numerator’ is private within this context
+   46 |     return lhs.numerator == rhs.numerator && lhs.denominator == rhs.denominator;
+      |            ~~~~^~~~~~~~~
+../lib/bigRational.h:43:20: note: declared private here
+   43 |   BigInteger<Base> numerator;
+      |                    ^~~~~~~~~
+bigRational.cc:46:33: error: ‘BigInteger<16> BigRational<16>::numerator’ is private within this context
+   46 |     return lhs.numerator == rhs.numerator && lhs.denominator == rhs.denominator;
+      |                             ~~~~^~~~~~~~~
+../lib/bigRational.h:43:20: note: declared private here
+   43 |   BigInteger<Base> numerator;
+      |                    ^~~~~~~~~
+bigRational.cc:46:50: error: ‘BigUnsigned<16> BigRational<16>::denominator’ is private within this context
+   46 |     return lhs.numerator == rhs.numerator && lhs.denominator == rhs.denominator;
+      |                                              ~~~~^~~~~~~~~~~
+../lib/bigRational.h:44:21: note: declared private here
+   44 |   BigUnsigned<Base> denominator;
+      |                     ^~~~~~~~~~~
+bigRational.cc:46:69: error: ‘BigUnsigned<16> BigRational<16>::denominator’ is private within this context
+   46 |     return lhs.numerator == rhs.numerator && lhs.denominator == rhs.denominator;
+      |                                                                 ~~~~^~~~~~~~~~~
+../lib/bigRational.h:44:21: note: declared private here
+   44 |   BigUnsigned<Base> denominator;
+      |                     ^~~~~~~~~~~
+bigRational.cc: In instantiation of ‘bool operator<(const BigRational<Base>&, const BigRational<Base>&) [with unsigned char Base = 16]’:
+bigRational.cc:167:84:   required from here
+bigRational.cc:51:16: error: ‘BigInteger<16> BigRational<16>::numerator’ is private within this context
+   51 |     return lhs.numerator * rhs.denominator < rhs.numerator * lhs.denominator;
+      |            ~~~~^~~~~~~~~
+../lib/bigRational.h:43:20: note: declared private here
+   43 |   BigInteger<Base> numerator;
+      |                    ^~~~~~~~~
+bigRational.cc:51:32: error: ‘BigUnsigned<16> BigRational<16>::denominator’ is private within this context
+   51 |     return lhs.numerator * rhs.denominator < rhs.numerator * lhs.denominator;
+      |                            ~~~~^~~~~~~~~~~
+../lib/bigRational.h:44:21: note: declared private here
+   44 |   BigUnsigned<Base> denominator;
+      |                     ^~~~~~~~~~~
+bigRational.cc:51:50: error: ‘BigInteger<16> BigRational<16>::numerator’ is private within this context
+   51 |     return lhs.numerator * rhs.denominator < rhs.numerator * lhs.denominator;
+      |                                              ~~~~^~~~~~~~~
+../lib/bigRational.h:43:20: note: declared private here
+   43 |   BigInteger<Base> numerator;
+      |                    ^~~~~~~~~
+bigRational.cc:51:66: error: ‘BigUnsigned<16> BigRational<16>::denominator’ is private within this context
+   51 |     return lhs.numerator * rhs.denominator < rhs.numerator * lhs.denominator;
+      |                                                              ~~~~^~~~~~~~~~~
+../lib/bigRational.h:44:21: note: declared private here
+   44 |   BigUnsigned<Base> denominator;
+      |                     ^~~~~~~~~~~

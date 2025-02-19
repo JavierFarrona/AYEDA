@@ -31,6 +31,32 @@ BigUnsigned<Base>::BigUnsigned(const unsigned char* str) {
   std::reverse(digits.begin(), digits.end());
 }
 
+// Constructor desde string
+template <unsigned char Base>
+BigUnsigned<Base>::BigUnsigned(const std::string& str) {
+    digits.clear();
+    for (char c : str) {
+        unsigned char value;
+        if (c >= '0' && c <= '9') {
+        value = c - '0';
+        } else if (c >= 'A' && c <= 'F') {
+        value = c - 'A' + 10;
+        } else if (c >= 'a' && c <= 'f') {
+        value = c - 'a' + 10;
+        } else {
+        throw std::invalid_argument("Invalid character in input.");
+        }
+
+        if (value >= Base) {
+        throw std::invalid_argument("Digit out of range for the specified base.");
+        }
+
+        digits.push_back(value);
+    }
+
+    std::reverse(digits.begin(), digits.end());
+}
+
 // Constructor de copia
 template <unsigned char Base>
 BigUnsigned<Base>::BigUnsigned(const BigUnsigned<Base>& other) {
@@ -40,6 +66,7 @@ BigUnsigned<Base>::BigUnsigned(const BigUnsigned<Base>& other) {
   digits = other.digits;
 }
 
+
 // Asignación
 template <unsigned char Base>
 BigUnsigned<Base>& BigUnsigned<Base>::operator=(const BigUnsigned<Base>& other) {
@@ -48,15 +75,14 @@ BigUnsigned<Base>& BigUnsigned<Base>::operator=(const BigUnsigned<Base>& other) 
   }
   return *this;
 }
-
+/*
 // Flujos de entrada y salida
-template <unsigned char Base>
+template<unsigned char Base>
 std::ostream& operator<<(std::ostream& os, const BigUnsigned<Base>& num) {
-  static const char* digits = "0123456789ABCDEF";
-  for (auto it = num.digits.rbegin(); it != num.digits.rend(); ++it) {
-    os << digits[*it];
-  }
-  return os;
+    // Implementa la lógica para convertir `num` a una cadena y enviarla al flujo de salida
+    // Por ejemplo:
+    os << num.toString(); // Asumiendo que tienes un método `toString` en tu clase
+    return os;
 }
 
 template <unsigned char Base>
@@ -87,7 +113,7 @@ std::istream& operator>>(std::istream& is, BigUnsigned<Base>& num) {
   std::reverse(num.digits.begin(), num.digits.end());
   return is;
 }
-
+*/
 // Comparación
 template <unsigned char Base>
 bool BigUnsigned<Base>::operator==(const BigUnsigned<Base>& other) const {
@@ -574,3 +600,7 @@ BigUnsigned<2> BigUnsigned<2>::complement_2() const {
 std::vector<bool>& BigUnsigned<2>::getBits() {
   return bits;
 }
+
+template class BigUnsigned<8>;
+template class BigUnsigned<10>;
+template class BigUnsigned<16>;

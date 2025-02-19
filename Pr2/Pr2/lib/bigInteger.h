@@ -28,6 +28,7 @@ class BigInteger {
     template <unsigned B>
     friend std::istream& operator>>(std::istream& is, BigInteger<B>& num);
 
+
     // Comparación
     bool operator==(const BigInteger<Base>& other) const;
     bool operator<(const BigInteger<Base>& other) const;
@@ -49,6 +50,7 @@ class BigInteger {
     void removeLeadingZeros();     // Elimina ceros a la izquierda
     unsigned char getBase() const { return magnitude_.getBase(); }
     bool isNegative() const { return negative_; }
+    BigUnsigned<Base> getMagnitude() const { return magnitude_; }
 
   private:
     BigUnsigned<Base> magnitude_;
@@ -99,10 +101,27 @@ class BigInteger<2> {
     void removeLeadingZeros();     // Elimina ceros a la izquierda
     bool isNegative() const { return negative; }
     BigInteger<2> complement_2() const;
+    BigUnsigned<2> getMagnitude() const { return magnitude; }
 
   private:
     BigUnsigned<2> magnitude;
     bool negative;
 };
+
+// Definición de los operadores de flujo
+template <unsigned char Base>
+std::ostream& operator<<(std::ostream& os, const BigInteger<Base>& num) {
+  os << num.toString();
+  return os;
+}
+
+template <unsigned char Base>
+std::istream& operator>>(std::istream& is, BigInteger<Base>& num) {
+  std::string input;
+  is >> input;
+  num = BigInteger<Base>(input);
+  return is;
+}
+
 
 #endif

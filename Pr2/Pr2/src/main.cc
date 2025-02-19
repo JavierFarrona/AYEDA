@@ -92,14 +92,41 @@ void processFile(const std::string& inputFilename, const std::string& outputFile
 }
 
 int main(int argc, char* argv[]) {
-    if (argc != 2) {
-        std::cerr << "Uso: " << argv[0] << " <archivo>\n";
-        return 1;
-    }
+    BigInteger<10> a("123");
+    BigUnsigned<10> b("987");
+    BigInteger<10> c("456");
+    BigUnsigned<10> d("543");
 
-    std::string inputFilename = argv[1];
-    std::string outputFilename = "resultado";
-    processFile(inputFilename, outputFilename);
+    std::cout << a << std::endl;
+    std::cout << b << std::endl;
+    std::cout << c << std::endl;
+    std::cout << d << std::endl;
+
+    std::cout << a + c << std::endl;
+    std::cout << a - c << std::endl;
+    std::cout << a * c << std::endl;
+    std::cout << a / c << std::endl;
+    std::cout << (a == c) << std::endl;
+    std::cout << (a < c) << std::endl;
+
+    std::cout << b + d << std::endl;
+    std::cout << b - d << std::endl;
+    std::cout << b * d << std::endl;
+    std::cout << b / d << std::endl;
+    std::cout << (b == d) << std::endl;
+    std::cout << (b < d) << std::endl;
+
+    BigRational<10> e(a, b);
+    BigRational<10> f(c, d);
+
+    std::cout << e << std::endl;
+    std::cout << f << std::endl;
+    std::cout << e + f << std::endl;
+    std::cout << e - f << std::endl;
+    std::cout << e * f << std::endl;
+    std::cout << e / f << std::endl;
+    std::cout << (e == f) << std::endl;
+    std::cout << (e < f) << std::endl;
 
     return 0;
 }

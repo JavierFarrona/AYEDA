@@ -505,11 +505,22 @@ BigUnsigned<2> BigUnsigned<2>::operator+(const BigUnsigned<2>& other) const {
 }
 
 BigUnsigned<2> BigUnsigned<2>::operator-(const BigUnsigned<2>& other) const {
-  if (*this < other) {
-    throw std::underflow_error("Result of subtraction would be negative.");
+  BigUnsigned<2> result;
+  result.bits.clear();
+
+  bool borrow = false;
+  for (size_t i = 0; i < bits.size(); ++i) {
+    bool bit1 = bits[i];
+    bool bit2 = (i < other.bits.size()) ? other.bits[i] : false;
+
+    bool diff = bit1 ^ bit2 ^ borrow;
+    borrow = (!bit1 && bit2) || (borrow && !bit1) || (borrow && bit2);
+
+    result.bits.push_back(diff);
   }
-  BigUnsigned<2> complement = other.complement_2();
-  return *this + complement;
+
+  result.removeLeadingZeros();
+  return result;
 }
 
 BigUnsigned<2> BigUnsigned<2>::operator*(const BigUnsigned<2>& other) const {
@@ -530,47 +541,40 @@ BigUnsigned<2> BigUnsigned<2>::operator*(const BigUnsigned<2>& other) const {
   return result;
 }
 
+
+// Implementación optimizada de la división y el módulo para base 2
 BigUnsigned<2> BigUnsigned<2>::operator/(const BigUnsigned<2>& other) const {
-  if (other == BigUnsigned<2>()) {
-    throw std::invalid_argument("Cannot divide by zero.");
+  if (other == BigUnsigned<2>("0")) {
+    throw std::invalid_argument("Division by zero");
   }
 
-  BigUnsigned<2> dividend = *this;
-  BigUnsigned<2> divisor = other;
-  BigUnsigned<2> quotient;
+  BigUnsigned<2> result;
+  result.bits.resize(bits.size(), 0);
+
   BigUnsigned<2> remainder;
-
-  for (int i = dividend.bits.size() - 1; i >= 0; --i) {
-    remainder.bits.insert(remainder.bits.begin(), dividend.bits[i]);
+  for (int i = bits.size() - 1; i >= 0; --i) {
+    remainder.bits.insert(remainder.bits.begin(), bits[i]);
     remainder.removeLeadingZeros();
-
-    bool count = false;
-    while (remainder >= divisor) {
-      remainder = remainder - divisor;
-      count = true;
+    if (remainder >= other) {
+      remainder = remainder - other;
+      result.bits[i] = 1;
     }
-    quotient.bits.insert(quotient.bits.begin(), count);
   }
 
-  quotient.removeLeadingZeros();
-  return quotient;
+  result.removeLeadingZeros();
+  return result;
 }
 
 BigUnsigned<2> BigUnsigned<2>::operator%(const BigUnsigned<2>& other) const {
-  if (other == BigUnsigned<2>()) {
-    throw std::invalid_argument("Cannot modulo by zero.");
+  if (other == BigUnsigned<2>("0")) {
+    throw std::invalid_argument("Division by zero");
   }
-  BigUnsigned<2> dividend = *this;
-  BigUnsigned<2> divisor = other;
-  BigUnsigned<2> remainder;
-  for (int i = dividend.bits.size() - 1; i >= 0; --i) {
-    remainder.bits.insert(remainder.bits.begin(), dividend.bits[i]);
-    remainder.removeLeadingZeros();
-    while (remainder >= divisor) {
-      remainder = remainder - divisor;
-    }
-  }
-  remainder.removeLeadingZeros();
+
+  BigUnsigned<2> remainder, aux;
+  remainder.bits.clear();
+  aux = *this / other;
+  remainder = aux - *this;
+
   return remainder;
 }
 

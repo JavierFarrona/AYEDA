@@ -3,6 +3,7 @@
 #include <string>
 #include "../lib/bigRational.h"
 
+/*
 void processFile(const std::string& inputFilename, const std::string& outputFilename) {
     std::ifstream file(inputFilename);
     if (!file.is_open()) {
@@ -90,43 +91,82 @@ void processFile(const std::string& inputFilename, const std::string& outputFile
 
     outputFile.close();
 }
+*/
 
-int main(int argc, char* argv[]) {
-    BigInteger<10> a("123");
-    BigUnsigned<10> b("987");
-    BigInteger<10> c("456");
-    BigUnsigned<10> d("543");
+#include <iostream>
+#include "../lib/bigUnsigned.h"
 
-    std::cout << a << std::endl;
-    std::cout << b << std::endl;
-    std::cout << c << std::endl;
-    std::cout << d << std::endl;
+int main() {
 
-    std::cout << a + c << std::endl;
-    std::cout << a - c << std::endl;
-    std::cout << a * c << std::endl;
-    std::cout << a / c << std::endl;
-    std::cout << (a == c) << std::endl;
-    std::cout << (a < c) << std::endl;
+    // Base 8
+    BigRational<8> rat8_1("17/4"); // 15/4 en decimal
+    BigRational<8> rat8_2("7/3");  // 7/3 en decimal
+    std::cout << "Base 8:\n";
+    std::cout << "rat8_1: " << rat8_1 << "\n";
+    std::cout << "rat8_2: " << rat8_2 << "\n";
+    std::cout << "rat8_1 + rat8_2: " << (rat8_1 + rat8_2) << "\n";
+    std::cout << "rat8_1 - rat8_2: " << (rat8_1 - rat8_2) << "\n";
+    std::cout << "rat8_1 * rat8_2: " << (rat8_1 * rat8_2) << "\n";
+    std::cout << "rat8_1 / rat8_2: " << (rat8_1 / rat8_2) << "\n";
+    std::cout << std::boolalpha;
+    std::cout << "rat8_1 == rat8_2: " << (rat8_1 == rat8_2) << "\n";
+    std::cout << "rat8_1 < rat8_2: " << (rat8_1 < rat8_2) << "\n";
+    std::cout << "rat8_1 <= rat8_2: " << (rat8_1 <= rat8_2) << "\n";
+    std::cout << "rat8_1 > rat8_2: " << (rat8_1 > rat8_2) << "\n";
+    std::cout << "rat8_1 >= rat8_2: " << (rat8_1 >= rat8_2) << "\n\n";
 
-    std::cout << b + d << std::endl;
-    std::cout << b - d << std::endl;
-    std::cout << b * d << std::endl;
-    std::cout << b / d << std::endl;
-    std::cout << (b == d) << std::endl;
-    std::cout << (b < d) << std::endl;
+    // Base 10
+    BigRational<10> rat10_1("15/4");
+    BigRational<10> rat10_2("7/3");
+    std::cout << "Base 10:\n";
+    std::cout << "rat10_1: " << rat10_1 << "\n";
+    std::cout << "rat10_2: " << rat10_2 << "\n";
+    std::cout << "rat10_1 + rat10_2: " << (rat10_1 + rat10_2) << "\n";
+    std::cout << "rat10_1 - rat10_2: " << (rat10_1 - rat10_2) << "\n";
+    std::cout << "rat10_1 * rat10_2: " << (rat10_1 * rat10_2) << "\n";
+    std::cout << "rat10_1 / rat10_2: " << (rat10_1 / rat10_2) << "\n";
+    std::cout << std::boolalpha;
+    std::cout << "rat10_1 == rat10_2: " << (rat10_1 == rat10_2) << "\n";
+    std::cout << "rat10_1 < rat10_2: " << (rat10_1 < rat10_2) << "\n";
+    std::cout << "rat10_1 <= rat10_2: " << (rat10_1 <= rat10_2) << "\n";
+    std::cout << "rat10_1 > rat10_2: " << (rat10_1 > rat10_2) << "\n";
+    std::cout << "rat10_1 >= rat10_2: " << (rat10_1 >= rat10_2) << "\n\n";
 
-    BigRational<10> e(a, b);
-    BigRational<10> f(c, d);
+    // Base 16
+    BigRational<16> rat16_1("F/4"); // 15/4 en decimal
+    BigRational<16> rat16_2("7/3"); // 7/3 en decimal
+    std::cout << "Base 16:\n";
+    std::cout << "rat16_1: " << rat16_1 << "\n";
+    std::cout << "rat16_2: " << rat16_2 << "\n";
+    std::cout << "rat16_1 + rat16_2: " << (rat16_1 + rat16_2) << "\n";
+    std::cout << "rat16_1 - rat16_2: " << (rat16_1 - rat16_2) << "\n";
+    std::cout << "rat16_1 * rat16_2: " << (rat16_1 * rat16_2) << "\n";
+    std::cout << "rat16_1 / rat16_2: " << (rat16_1 / rat16_2) << "\n";
+    std::cout << std::boolalpha;
+    std::cout << "rat16_1 == rat16_2: " << (rat16_1 == rat16_2) << "\n";
+    std::cout << "rat16_1 < rat16_2: " << (rat16_1 < rat16_2) << "\n";
+    std::cout << "rat16_1 <= rat16_2: " << (rat16_1 <= rat16_2) << "\n";
+    std::cout << "rat16_1 > rat16_2: " << (rat16_1 > rat16_2) << "\n";
+    std::cout << "rat16_1 >= rat16_2: " << (rat16_1 >= rat16_2) << "\n\n";
 
-    std::cout << e << std::endl;
-    std::cout << f << std::endl;
-    std::cout << e + f << std::endl;
-    std::cout << e - f << std::endl;
-    std::cout << e * f << std::endl;
-    std::cout << e / f << std::endl;
-    std::cout << (e == f) << std::endl;
-    std::cout << (e < f) << std::endl;
+    // Base 2
+    std::cout << "Base 2:\n";
+    BigRational<2> rat2_1("-1111/101"); // 11/4 en decimal
+    BigRational<2> rat2_2("011/1");   // 7/3 en decimal
+
+    std::cout << "rat2_1: " << rat2_1 << "\n";
+    std::cout << "rat2_2: " << rat2_2 << "\n";
+
+    std::cout << "rat2_1 + rat2_2: " << (rat2_1 + rat2_2) << "\n";
+    std::cout << "rat2_1 - rat2_2: " << (rat2_1 - rat2_2) << "\n";
+    std::cout << "rat2_1 * rat2_2: " << (rat2_1 * rat2_2) << "\n";
+    std::cout << "rat2_1 / rat2_2: " << (rat2_1 / rat2_2) << "\n";
+    std::cout << std::boolalpha;
+    std::cout << "rat2_1 == rat2_2: " << (rat2_1 == rat2_2) << "\n";
+    std::cout << "rat2_1 < rat2_2: " << (rat2_1 < rat2_2) << "\n";
+    std::cout << "rat2_1 <= rat2_2: " << (rat2_1 <= rat2_2) << "\n";
+    std::cout << "rat2_1 > rat2_2: " << (rat2_1 > rat2_2) << "\n";
+    std::cout << "rat2_1 >= rat2_2: " << (rat2_1 >= rat2_2) << "\n\n";
 
     return 0;
 }

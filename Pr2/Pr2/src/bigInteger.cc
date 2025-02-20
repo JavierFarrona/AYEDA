@@ -139,6 +139,8 @@ void BigInteger<Base>::removeLeadingZeros() {
   magnitude_.removeLeadingZeros();
 }
 
+
+
 /*
 template<unsigned char Base>
 std::ostream& operator<<(std::ostream& os, const BigInteger<Base>& num) {

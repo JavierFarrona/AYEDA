@@ -1,7 +1,7 @@
 # Makefile fusionado: funcionalidades del usuario y generador
 
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -Wextra -g -Ilib
+CXXFLAGS = #-std=c++17 -Wall -Wextra -g -Ilib
 LDFLAGS =
 TARGET = notacion
 

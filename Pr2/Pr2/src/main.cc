@@ -97,7 +97,7 @@ void processFile(const std::string& inputFilename, const std::string& outputFile
 #include "../lib/bigUnsigned.h"
 
 int main() {
-
+	/*
     // Base 8
     BigRational<8> rat8_1("17/4"); // 15/4 en decimal
     BigRational<8> rat8_2("7/3");  // 7/3 en decimal
@@ -167,6 +167,18 @@ int main() {
     std::cout << "rat2_1 <= rat2_2: " << (rat2_1 <= rat2_2) << "\n";
     std::cout << "rat2_1 > rat2_2: " << (rat2_1 > rat2_2) << "\n";
     std::cout << "rat2_1 >= rat2_2: " << (rat2_1 >= rat2_2) << "\n\n";
+	*/
+
+  	BigRational<2> num1("-1100101/100");
+    BigRational<2> num2("10100/101");
+    std::cout << "num1: " << num1 << "\n";
+    std::cout << "num2: " << num2 << "\n";
+    std::cout << num1 << " + " << num2 << " = " << (num1 + num2) << "\n";
+    std::cout << num1 << " - " << num2 << " = " << (num1 - num2) << "\n";
+    std::cout << num1 << " * " << num2 << " = " << (num1 * num2) << "\n";
+    std::cout << num1 << " / " << num2 << " = " << (num1 / num2) << "\n";
+    //std::cout << num1 << " % " << num2 << " = " << (num1 % num2) << "\n";
+
 
     return 0;
 }

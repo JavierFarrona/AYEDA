@@ -148,7 +148,7 @@ BigRational<2>::BigRational(const BigInteger<2>& num, const BigUnsigned<2>& deno
     if (denominator == BigUnsigned<2>("0")) {
         throw std::invalid_argument("Denominator cannot be zero");
     }
-    reduce();
+    //reduce();
 }
 
 BigRational<2>::BigRational(const BigRational<2>& other)
@@ -245,18 +245,23 @@ void BigRational<2>::reduce() {
     BigInteger<2> gcdValue = gcd(numerator.getMagnitude(), denominator);
     numerator = numerator / gcdValue;
     denominator = denominator / BigUnsigned<2>(gcdValue.getMagnitude());
+    if (denominator == BigUnsigned<2>("0")) {
+        throw std::invalid_argument("Denominator cannot be zero");
+    }
 }
 
 BigInteger<2> BigRational<2>::gcd(const BigInteger<2>& a, const BigUnsigned<2>& b) {
-    BigInteger<2> bInt(b.toString());
-    BigInteger<2> aAbs = a.isNegative() ? -a : a;
-    BigInteger<2> bAbs = bInt.isNegative() ? -bInt : bInt;
-    while (!(bAbs == BigInteger<2>("0"))) {
-        BigInteger<2> temp = bAbs;
-        bAbs = aAbs % bAbs;
-        aAbs = temp;
+  	//std::cout << a << " " << b << std::endl;
+    BigInteger<2> u = a.isNegative() ? -a : a;
+    BigInteger<2> v(b);
+
+    while (!(v == BigInteger<2>("0"))) {
+        BigInteger<2> temp = v;
+        v = u % v;
+        u = temp;
     }
-    return aAbs;
+
+    return u;
 }
 
 bool BigRational<2>::isReduced() const {

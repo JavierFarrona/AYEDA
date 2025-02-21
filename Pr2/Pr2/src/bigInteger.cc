@@ -176,13 +176,13 @@ BigInteger<2>::BigInteger(int n) : magnitude(), negative(n < 0) {
 
 // Constructor desde string
 BigInteger<2>::BigInteger(const std::string& str) : magnitude(), negative(false) {
-  if (str.empty()) throw std::invalid_argument("Invalid input string");
-  size_t start = 0;
-  if (str[0] == '-') {
-    negative = true;
-    start = 1;
-  }
-  magnitude = BigUnsigned<2>(str.substr(start));
+    if (str.empty()) throw std::invalid_argument("Invalid input string");
+    size_t start = 0;
+    if (str[0] == '-') {
+        negative = true;
+        start = 1;
+    }
+    magnitude = BigUnsigned<2>(str.substr(start));
 }
 
 // Constructor de copia
@@ -315,11 +315,11 @@ BigInteger<2> BigInteger<2>::operator-() const {
   return result;
 }
 
-// Métodos auxiliares
+// Método toString
 std::string BigInteger<2>::toString() const {
-  std::string result = magnitude.toString();
-  if (negative) result.insert(result.begin(), '-');
-  return result;
+    std::string result = magnitude.toString();
+    if (negative) result.insert(result.begin(), '-');
+    return result;
 }
 
 void BigInteger<2>::removeLeadingZeros() {
@@ -328,11 +328,15 @@ void BigInteger<2>::removeLeadingZeros() {
 
 // bigInteger.cc
 BigInteger<2> BigInteger<2>::complement_2() const {
-  BigInteger<2> result = *this;
-  for (auto bit : result.magnitude.getBits()) {
-    bit = !bit;
-  }
-  return ++result;
+    BigInteger<2> result = *this;
+    for (auto bit : result.magnitude.getBits()) {
+        bit = !bit;
+    }
+    ++result;
+    if (negative) {
+        result.magnitude.getBits().insert(result.magnitude.getBits().begin(), true);
+    }
+    return result;
 }
 
 template class BigInteger<8>;

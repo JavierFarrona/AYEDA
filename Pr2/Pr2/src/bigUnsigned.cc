@@ -385,17 +385,16 @@ BigUnsigned<2>::BigUnsigned(unsigned n) {
 
 // Constructor desde string
 BigUnsigned<2>::BigUnsigned(const std::string& str) {
-  bits.clear();
-  for (char c : str) {
-    if (c == '0') {
-      bits.push_back(false);
-    } else if (c == '1') {
-      bits.push_back(true);
-    } else {
-      throw std::invalid_argument("Invalid character in input.");
+    for (char c : str) {
+        if (c == '0') {
+            bits.push_back(false);
+        } else if (c == '1') {
+            bits.push_back(true);
+        } else {
+            throw std::invalid_argument("Invalid binary digit");
+        }
     }
-  }
-  std::reverse(bits.begin(), bits.end());
+    std::reverse(bits.begin(), bits.end()); // Almacenar los bits en orden inverso
 }
 
 // Asignación
@@ -524,22 +523,21 @@ BigUnsigned<2> BigUnsigned<2>::operator-(const BigUnsigned<2>& other) const {
 }
 
 BigUnsigned<2> BigUnsigned<2>::operator*(const BigUnsigned<2>& other) const {
-  BigUnsigned<2> result;
-  result.bits.resize(bits.size() + other.bits.size(), false);
-  for (size_t i = 0; i < bits.size(); ++i) {
-    if (bits[i]) {
-      bool carry = false;
-      for (size_t j = 0; j < other.bits.size() || carry; ++j) {
-        bool bit2 = (j < other.bits.size()) ? other.bits[j] : false;
-        bool current = result.bits[i + j] ^ bit2 ^ carry;
-        carry = (result.bits[i + j] && bit2) || (result.bits[i + j] && carry) || (bit2 && carry);
-        result.bits[i + j] = current;
-      }
+    BigUnsigned<2> result(0);  // Inicializamos el resultado en 0
+    BigUnsigned<2> temp = *this;  // Copia del operando para desplazamientos
+
+    for (size_t i = 0; i < other.bits.size(); ++i) {
+        if (other.bits[i]) {
+            BigUnsigned<2> shifted = temp;  // Copia del multiplicando
+            shifted.bits.insert(shifted.bits.begin(), i, false);  // Desplazamiento en binario
+            result = result + shifted;  // Sumamos al resultado
+        }
     }
-  }
-  result.removeLeadingZeros();
-  return result;
+
+    result.removeLeadingZeros();  // Eliminamos ceros a la izquierda
+    return result;
 }
+
 
 
 // Implementación optimizada de la división y el módulo para base 2
@@ -570,21 +568,22 @@ BigUnsigned<2> BigUnsigned<2>::operator%(const BigUnsigned<2>& other) const {
     throw std::invalid_argument("Division by zero");
   }
 
-  BigUnsigned<2> remainder, aux;
-  remainder.bits.clear();
-  aux = *this / other;
-  remainder = aux - *this;
+  BigUnsigned<2> remainder(*this);
+
+  while (remainder >= other) {
+    remainder = remainder - other;
+  }
 
   return remainder;
 }
 
-// Métodos auxiliares
+// Método toString
 std::string BigUnsigned<2>::toString() const {
-  std::string result;
-  for (auto it = bits.rbegin(); it != bits.rend(); ++it) {
-    result += (*it ? '1' : '0');
-  }
-  return result.empty() ? "0" : result;
+    std::string result;
+    for (auto it = bits.rbegin(); it != bits.rend(); ++it) {
+        result += (*it ? '1' : '0');
+    }
+    return result.empty() ? "0" : result;
 }
 
 void BigUnsigned<2>::removeLeadingZeros() {

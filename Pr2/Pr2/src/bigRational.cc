@@ -132,7 +132,7 @@ bool BigRational<Base>::isReduced() const {
 template <unsigned char Base>
 BigInteger<Base> BigRational<Base>::gcd(const BigInteger<Base>& a, const BigUnsigned<Base>& b) {
     BigInteger<Base> bInt(b);
-    return bInt == BigInteger<Base>(0) ? a : gcd(bInt, a % bInt);
+    return bInt == BigInteger<Base>(0) ? a : gcd(bInt, a.getMagnitude() % bInt.getMagnitude());
 }
 
 // Especialización de la plantilla para base binaria
@@ -252,7 +252,7 @@ bool BigRational<2>::isReduced() const {
 // Método para calcular el máximo común divisor
 BigInteger<2> BigRational<2>::gcd(const BigInteger<2>& a, const BigUnsigned<2>& b) {
     BigInteger<2> bInt(b);
-    return bInt == BigInteger<2>(0) ? a : gcd(bInt, a % bInt);
+    return bInt == BigInteger<2>(0) ? a : gcd(bInt, a.getMagnitude() % bInt.getMagnitude());
 }
 
 // Instanciación de plantillas

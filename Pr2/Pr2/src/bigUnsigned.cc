@@ -1,10 +1,15 @@
 #include "../lib/bigUnsigned.h"
 
-// Constructor por defecto
+/**
+ * @brief Constructor por defecto.
+ */
 template <unsigned char Base>
 BigUnsigned<Base>::BigUnsigned() : digits(1, 0) {}
 
-// Constructor con char
+/**
+ * @brief Constructor que inicializa el número desde una cadena de caracteres.
+ * @param str Cadena de caracteres que representa el número.
+ */
 template <unsigned char Base>
 BigUnsigned<Base>::BigUnsigned(const unsigned char* str) {
   digits.clear();
@@ -31,7 +36,10 @@ BigUnsigned<Base>::BigUnsigned(const unsigned char* str) {
   std::reverse(digits.begin(), digits.end());
 }
 
-// Constructor desde string
+/**
+ * @brief Constructor que inicializa el número desde una cadena de caracteres.
+ * @param str Cadena de caracteres que representa el número.
+ */
 template <unsigned char Base>
 BigUnsigned<Base>::BigUnsigned(const std::string& str) {
     digits.clear();
@@ -40,7 +48,6 @@ BigUnsigned<Base>::BigUnsigned(const std::string& str) {
         if (c >= '0' && c <= '9') {
         value = c - '0';
         } else if (c >= 'A' && c <= 'F') {
-        value = c - 'A' + 10;
         } else if (c >= 'a' && c <= 'f') {
         value = c - 'a' + 10;
         } else {
@@ -57,17 +64,22 @@ BigUnsigned<Base>::BigUnsigned(const std::string& str) {
     std::reverse(digits.begin(), digits.end());
 }
 
-// Constructor de copia
+/**
+ * @brief Constructor de copia.
+ * @param other Objeto a copiar.
+ */
 template <unsigned char Base>
-BigUnsigned<Base>::BigUnsigned(const BigUnsigned<Base>& other) {
   if (this->getBase() != other.getBase()) {
     throw std::invalid_argument("Cannot copy numbers with different bases.");
   }
   digits = other.digits;
 }
 
-
-// Asignación
+/**
+ * @brief Operador de asignación.
+ * @param other Objeto a asignar.
+ * @return Referencia al objeto asignado.
+ */
 template <unsigned char Base>
 BigUnsigned<Base>& BigUnsigned<Base>::operator=(const BigUnsigned<Base>& other) {
   if (!(this == &other)) {
@@ -75,51 +87,22 @@ BigUnsigned<Base>& BigUnsigned<Base>::operator=(const BigUnsigned<Base>& other) 
   }
   return *this;
 }
-/*
-// Flujos de entrada y salida
-template<unsigned char Base>
-std::ostream& operator<<(std::ostream& os, const BigUnsigned<Base>& num) {
-    // Implementa la lógica para convertir `num` a una cadena y enviarla al flujo de salida
-    // Por ejemplo:
-    os << num.toString(); // Asumiendo que tienes un método `toString` en tu clase
-    return os;
-}
 
-template <unsigned char Base>
-std::istream& operator>>(std::istream& is, BigUnsigned<Base>& num) {
-  std::string input;
-  is >> input;
-
-  num.digits.clear();
-  for (char c : input) {
-    unsigned char value;
-    if (c >= '0' && c <= '9') {
-      value = c - '0';
-    } else if (c >= 'A' && c <= 'F') {
-      value = c - 'A' + 10;
-    } else if (c >= 'a' && c <= 'f') {
-      value = c - 'a' + 10;
-    } else {
-      throw std::invalid_argument("Invalid character in input.");
-    }
-
-    if (value >= Base) {
-      throw std::invalid_argument("Digit out of range for the specified base.");
-    }
-
-    num.digits.push_back(value);
-  }
-
-  std::reverse(num.digits.begin(), num.digits.end());
-  return is;
-}
-*/
-// Comparación
+/**
+ * @brief Operador de comparación de igualdad.
+ * @param other Objeto a comparar.
+ * @return true si los objetos son iguales, false en caso contrario.
+ */
 template <unsigned char Base>
 bool BigUnsigned<Base>::operator==(const BigUnsigned<Base>& other) const {
   return ((digits == other.digits) && (this->getBase() == other.getBase()));
 }
 
+/**
+ * @brief Operador de comparación menor que.
+ * @param other Objeto a comparar.
+ * @return true si el objeto actual es menor que el otro, false en caso contrario.
+ */
 template <unsigned char Base>
 bool BigUnsigned<Base>::operator<(const BigUnsigned<Base>& other) const {
   if (this->getBase() != other.getBase()) {
@@ -139,22 +122,40 @@ bool BigUnsigned<Base>::operator<(const BigUnsigned<Base>& other) const {
   return false; // Son iguales
 }
 
+/**
+ * @brief Operador de comparación menor o igual que.
+ * @param other Objeto a comparar.
+ * @return true si el objeto actual es menor o igual que el otro, false en caso contrario.
+ */
 template <unsigned char Base>
 bool BigUnsigned<Base>::operator<=(const BigUnsigned<Base>& other) const {
   return *this < other || *this == other;
 }
 
+/**
+ * @brief Operador de comparación mayor que.
+ * @param other Objeto a comparar.
+ * @return true si el objeto actual es mayor que el otro, false en caso contrario.
+ */
 template <unsigned char Base>
 bool BigUnsigned<Base>::operator>(const BigUnsigned<Base>& other) const {
   return !(*this <= other);
 }
 
+/**
+ * @brief Operador de comparación mayor o igual que.
+ * @param other Objeto a comparar.
+ * @return true si el objeto actual es mayor o igual que el otro, false en caso contrario.
+ */
 template <unsigned char Base>
 bool BigUnsigned<Base>::operator>=(const BigUnsigned<Base>& other) const {
   return !(*this < other);
 }
 
-// Incremento y decremento
+/**
+ * @brief Operador de preincremento.
+ * @return Referencia al objeto incrementado.
+ */
 template <unsigned char Base>
 BigUnsigned<Base>& BigUnsigned<Base>::operator++() {
     unsigned char carry = 1;
@@ -174,6 +175,10 @@ BigUnsigned<Base>& BigUnsigned<Base>::operator++() {
     return *this;
 }
 
+/**
+ * @brief Operador de postincremento.
+ * @return Objeto antes de ser incrementado.
+ */
 template <unsigned char Base>
 BigUnsigned<Base> BigUnsigned<Base>::operator++(int) {
   BigUnsigned<Base> temp = *this;
@@ -181,6 +186,10 @@ BigUnsigned<Base> BigUnsigned<Base>::operator++(int) {
   return temp;
 }
 
+/**
+ * @brief Operador de predecremento.
+ * @return Referencia al objeto decrementado.
+ */
 template <unsigned char Base>
 BigUnsigned<Base>& BigUnsigned<Base>::operator--() {
   if (digits.empty() || (digits.size() == 1 && digits[0] == 0)) {
@@ -203,6 +212,10 @@ BigUnsigned<Base>& BigUnsigned<Base>::operator--() {
   return *this;
 }
 
+/**
+ * @brief Operador de postdecremento.
+ * @return Objeto antes de ser decrementado.
+ */
 template <unsigned char Base>
 BigUnsigned<Base> BigUnsigned<Base>::operator--(int) {
   BigUnsigned<Base> temp = *this;
@@ -210,7 +223,11 @@ BigUnsigned<Base> BigUnsigned<Base>::operator--(int) {
   return temp;
 }
 
-// Operadores aritméticos
+/**
+ * @brief Operador de suma.
+ * @param other Objeto a sumar.
+ * @return Resultado de la suma.
+ */
 template <unsigned char Base>
 BigUnsigned<Base> BigUnsigned<Base>::operator+(const BigUnsigned<Base>& other) const {
   if (this->getBase() != other.getBase()) {
@@ -237,6 +254,11 @@ BigUnsigned<Base> BigUnsigned<Base>::operator+(const BigUnsigned<Base>& other) c
   return result;
 }
 
+/**
+ * @brief Operador de resta.
+ * @param other Objeto a restar.
+ * @return Resultado de la resta.
+ */
 template <unsigned char Base>
 BigUnsigned<Base> BigUnsigned<Base>::operator-(const BigUnsigned<Base>& other) const {
   if (this->getBase() != other.getBase()) {
@@ -268,6 +290,11 @@ BigUnsigned<Base> BigUnsigned<Base>::operator-(const BigUnsigned<Base>& other) c
   return result;
 }
 
+/**
+ * @brief Operador de multiplicación.
+ * @param other Objeto a multiplicar.
+ * @return Resultado de la multiplicación.
+ */
 template <unsigned char Base>
 BigUnsigned<Base> BigUnsigned<Base>::operator*(const BigUnsigned<Base>& other) const {
   if (this->getBase() != other.getBase()) {
@@ -291,6 +318,11 @@ BigUnsigned<Base> BigUnsigned<Base>::operator*(const BigUnsigned<Base>& other) c
   return result;
 }
 
+/**
+ * @brief Operador de división.
+ * @param other Objeto a dividir.
+ * @return Resultado de la división.
+ */
 template <unsigned char Base>
 BigUnsigned<Base> BigUnsigned<Base>::operator/(const BigUnsigned<Base>& other) const {
   if (this->getBase() != other.getBase()) {
@@ -323,6 +355,11 @@ BigUnsigned<Base> BigUnsigned<Base>::operator/(const BigUnsigned<Base>& other) c
   return quotient;
 }
 
+/**
+ * @brief Operador de módulo.
+ * @param other Objeto a dividir.
+ * @return Resto de la división.
+ */
 template <unsigned char Base>
 BigUnsigned<Base> BigUnsigned<Base>::operator%(const BigUnsigned<Base>& other) const {
   if (this->getBase() != other.getBase()) {
@@ -350,7 +387,10 @@ BigUnsigned<Base> BigUnsigned<Base>::operator%(const BigUnsigned<Base>& other) c
   return remainder;
 }
 
-// Métodos auxiliares
+/**
+ * @brief Convierte el número a una cadena de caracteres.
+ * @return Cadena de caracteres que representa el número.
+ */
 template <unsigned char Base>
 std::string BigUnsigned<Base>::toString() const {
   static const char* out_digits = "0123456789ABCDEF";
@@ -361,6 +401,9 @@ std::string BigUnsigned<Base>::toString() const {
   return result.empty() ? "0" : result;
 }
 
+/**
+ * @brief Elimina los ceros a la izquierda del número.
+ */
 template <unsigned char Base>
 void BigUnsigned<Base>::removeLeadingZeros() {
   while (digits.size() > 1 && digits.back() == 0) {

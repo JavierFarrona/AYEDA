@@ -1,4 +1,3 @@
-// Integer.cpp
 #include "../lib/bigInteger.h"
 
 // Constructor por defecto
@@ -44,11 +43,13 @@ BigInteger<Base>& BigInteger<Base>::operator=(const BigInteger<Base>& other) {
     return *this;
 }
 
+// Operador de comparación de igualdad
 template <unsigned char Base>
 bool BigInteger<Base>::operator==(const BigInteger<Base>& other) const {
   return (negative_ == other.negative_) && (magnitude_ == other.magnitude_);
 }
 
+// Operador de comparación menor que
 template <unsigned char Base>
 bool BigInteger<Base>::operator<(const BigInteger<Base>& other) const {
   if (negative_ != other.negative_) {
@@ -60,21 +61,25 @@ bool BigInteger<Base>::operator<(const BigInteger<Base>& other) const {
   return magnitude_ < other.magnitude_;
 }
 
+// Operador de comparación menor o igual que
 template <unsigned char Base>
 bool BigInteger<Base>::operator<=(const BigInteger<Base>& other) const {
   return (*this < other) || (*this == other);
 }
 
+// Operador de comparación mayor que
 template <unsigned char Base>
 bool BigInteger<Base>::operator>(const BigInteger<Base>& other) const {
   return !(*this <= other);
 }
 
+// Operador de comparación mayor o igual que
 template <unsigned char Base>
 bool BigInteger<Base>::operator>=(const BigInteger<Base>& other) const {
   return !(*this < other);
 }
 
+// Operador de suma
 template <unsigned char Base>
 BigInteger<Base> BigInteger<Base>::operator+(const BigInteger<Base>& other) const {
   if (negative_ == other.negative_) {
@@ -93,6 +98,7 @@ BigInteger<Base> BigInteger<Base>::operator+(const BigInteger<Base>& other) cons
   }
 }
 
+// Operador de resta
 template <unsigned char Base>
 BigInteger<Base> BigInteger<Base>::operator-(const BigInteger<Base>& other) const {
   BigInteger negatedOther = other;
@@ -100,6 +106,7 @@ BigInteger<Base> BigInteger<Base>::operator-(const BigInteger<Base>& other) cons
   return *this + negatedOther;
 }
 
+// Operador de multiplicación
 template <unsigned char Base>
 BigInteger<Base> BigInteger<Base>::operator*(const BigInteger<Base>& other) const {
   BigInteger result(magnitude_ * other.magnitude_);
@@ -107,6 +114,7 @@ BigInteger<Base> BigInteger<Base>::operator*(const BigInteger<Base>& other) cons
   return result;
 }
 
+// Operador de división
 template <unsigned char Base>
 BigInteger<Base> BigInteger<Base>::operator/(const BigInteger<Base>& other) const {
   if (other.magnitude_ == BigUnsigned<Base>(reinterpret_cast<const unsigned char*>("0"))) {
@@ -117,6 +125,7 @@ BigInteger<Base> BigInteger<Base>::operator/(const BigInteger<Base>& other) cons
   return result;
 }
 
+// Operador de módulo
 template <unsigned char Base>
 BigInteger<Base> BigInteger<Base>::operator%(const BigInteger<Base>& other) const {
   if (other.magnitude_ == BigUnsigned<Base>(reinterpret_cast<const unsigned char*>("0"))) {
@@ -127,6 +136,7 @@ BigInteger<Base> BigInteger<Base>::operator%(const BigInteger<Base>& other) cons
   return result;
 }
 
+// Método toString
 template <unsigned char Base>
 std::string BigInteger<Base>::toString() const {
   std::string result = magnitude_.toString();
@@ -134,30 +144,13 @@ std::string BigInteger<Base>::toString() const {
   return result;
 }
 
+// Método para eliminar ceros a la izquierda
 template <unsigned char Base>
 void BigInteger<Base>::removeLeadingZeros() {
   magnitude_.removeLeadingZeros();
 }
 
-
-
-/*
-template<unsigned char Base>
-std::ostream& operator<<(std::ostream& os, const BigInteger<Base>& num) {
-    // Aquí debes implementar la lógica para convertir el objeto BigInteger a una cadena
-    // y enviarla al flujo de salida. Esto es solo un ejemplo básico.
-    os << num.toString(); // Asumiendo que tienes un método toString() en BigInteger
-    return os;
-}
-
-template <unsigned char Base>
-std::istream& operator>>(std::istream& in, BigInteger<Base>& bigint) {
-  std::string input;
-  in >> input;
-  bigint = BigInteger<Base>(input);
-  return in;
-}
-*/
+// Operador de negación
 template <unsigned char Base>
 BigInteger<Base> BigInteger<Base>::operator-() const {
   BigInteger result = *this;
@@ -211,11 +204,12 @@ std::ostream& operator<<(std::ostream& os, const BigInteger<2>& num) {
   return os;
 }
 
-// Comparación
+// Comparación de igualdad
 bool BigInteger<2>::operator==(const BigInteger<2>& other) const {
   return (negative == other.negative) && (magnitude == other.magnitude);
 }
 
+// Comparación menor que
 bool BigInteger<2>::operator<(const BigInteger<2>& other) const {
   if (negative != other.negative) {
     return negative && !other.negative;
@@ -226,42 +220,48 @@ bool BigInteger<2>::operator<(const BigInteger<2>& other) const {
   return magnitude < other.magnitude;
 }
 
+// Comparación menor o igual que
 bool BigInteger<2>::operator<=(const BigInteger<2>& other) const {
   return (*this < other) || (*this == other);
 }
 
+// Comparación mayor que
 bool BigInteger<2>::operator>(const BigInteger<2>& other) const {
   return !(*this <= other);
 }
 
+// Comparación mayor o igual que
 bool BigInteger<2>::operator>=(const BigInteger<2>& other) const {
   return !(*this < other);
 }
 
-// Incremento y decremento
+// Preincremento
 BigInteger<2>& BigInteger<2>::operator++() {
   *this = *this + BigInteger<2>(1);
   return *this;
 }
 
+// Postincremento
 BigInteger<2> BigInteger<2>::operator++(int) {
   BigInteger<2> temp = *this;
   ++(*this);
   return temp;
 }
 
+// Predecremento
 BigInteger<2>& BigInteger<2>::operator--() {
   *this = *this - BigInteger<2>(1);
   return *this;
 }
 
+// Postdecremento
 BigInteger<2> BigInteger<2>::operator--(int) {
   BigInteger<2> temp = *this;
   --(*this);
   return temp;
 }
 
-// Operadores aritméticos
+// Operador de suma
 BigInteger<2> BigInteger<2>::operator+(const BigInteger<2>& other) const {
   BigInteger<2> result;
   if (negative == other.negative) {
@@ -279,18 +279,21 @@ BigInteger<2> BigInteger<2>::operator+(const BigInteger<2>& other) const {
   return result;
 }
 
+// Operador de resta
 BigInteger<2> BigInteger<2>::operator-(const BigInteger<2>& other) const {
   BigInteger<2> negatedOther = other;
   negatedOther.negative = !other.negative;
   return *this + negatedOther;
 }
 
+// Operador de multiplicación
 BigInteger<2> BigInteger<2>::operator*(const BigInteger<2>& other) const {
   BigInteger<2> result(magnitude * other.magnitude);
   result.negative = negative != other.negative;
   return result;
 }
 
+// Operador de división
 BigInteger<2> BigInteger<2>::operator/(const BigInteger<2>& other) const {
   if (other.magnitude == BigUnsigned<2>("0")) {
     throw std::invalid_argument("Division by zero");
@@ -300,6 +303,7 @@ BigInteger<2> BigInteger<2>::operator/(const BigInteger<2>& other) const {
   return result;
 }
 
+// Operador de módulo
 BigInteger<2> BigInteger<2>::operator%(const BigInteger<2>& other) const {
   if (other.magnitude == BigUnsigned<2>("0")) {
     throw std::invalid_argument("Modulo by zero");
@@ -309,6 +313,7 @@ BigInteger<2> BigInteger<2>::operator%(const BigInteger<2>& other) const {
   return result;
 }
 
+// Operador de negación
 BigInteger<2> BigInteger<2>::operator-() const {
   BigInteger<2> result = *this;
   result.negative = !negative;
@@ -322,11 +327,12 @@ std::string BigInteger<2>::toString() const {
     return result;
 }
 
+// Método para eliminar ceros a la izquierda
 void BigInteger<2>::removeLeadingZeros() {
   magnitude.removeLeadingZeros();
 }
 
-// bigInteger.cc
+// Método para calcular el complemento a 2
 BigInteger<2> BigInteger<2>::complement_2() const {
     BigInteger<2> result = *this;
     for (auto bit : result.magnitude.getBits()) {
@@ -339,6 +345,7 @@ BigInteger<2> BigInteger<2>::complement_2() const {
     return result;
 }
 
+// Instanciación de plantillas
 template class BigInteger<8>;
 template class BigInteger<10>;
 template class BigInteger<16>;

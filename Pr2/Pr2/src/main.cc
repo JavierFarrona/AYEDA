@@ -93,9 +93,6 @@ void processFile(const std::string& inputFilename, const std::string& outputFile
 }
 */
 
-#include <iostream>
-#include "../lib/bigUnsigned.h"
-
 int main() {
 	/*
     // Base 8

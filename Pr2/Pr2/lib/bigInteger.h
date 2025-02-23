@@ -1,6 +1,7 @@
 // Integer.h
 #ifndef BIGINTEGER_H
 #define BIGINTEGER_H
+
 #include "./bigUnsigned.h"
 
 template <unsigned char Base>

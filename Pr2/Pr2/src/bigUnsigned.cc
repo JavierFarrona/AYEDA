@@ -42,26 +42,26 @@ BigUnsigned<Base>::BigUnsigned(const unsigned char* str) {
  */
 template <unsigned char Base>
 BigUnsigned<Base>::BigUnsigned(const std::string& str) {
-    digits.clear();
-    for (char c : str) {
-        unsigned char value;
-        if (c >= '0' && c <= '9') {
-        value = c - '0';
-        } else if (c >= 'A' && c <= 'F') {
-        } else if (c >= 'a' && c <= 'f') {
-        value = c - 'a' + 10;
-        } else {
-        throw std::invalid_argument("Invalid character in input.");
-        }
-
-        if (value >= Base) {
-        throw std::invalid_argument("Digit out of range for the specified base.");
-        }
-
-        digits.push_back(value);
+  digits.clear();
+  for (char c : str) {
+    unsigned char value;
+    if (c >= '0' && c <= '9') {
+      value = c - '0';
+    } else if (c >= 'A' && c <= 'F') {
+      value = c - 'A' + 10;
+    } else if (c >= 'a' && c <= 'f') {
+      value = c - 'a' + 10;
+    } else {
+      throw std::invalid_argument("Invalid character in input.");
     }
 
-    std::reverse(digits.begin(), digits.end());
+    if (value >= Base) {
+    }
+
+    digits.push_back(value);
+  }
+
+  std::reverse(digits.begin(), digits.end());
 }
 
 /**
@@ -69,6 +69,7 @@ BigUnsigned<Base>::BigUnsigned(const std::string& str) {
  * @param other Objeto a copiar.
  */
 template <unsigned char Base>
+BigUnsigned<Base>::BigUnsigned(const BigUnsigned<Base>& other) : digits(other.digits) {
   if (this->getBase() != other.getBase()) {
     throw std::invalid_argument("Cannot copy numbers with different bases.");
   }

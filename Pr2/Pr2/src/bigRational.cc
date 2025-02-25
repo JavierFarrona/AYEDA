@@ -4,7 +4,7 @@
 template <unsigned char Base>
 BigRational<Base>::BigRational(const BigInteger<Base>& num, const BigUnsigned<Base>& denom)
     : numerator(num), denominator(denom) {
-    if (denominator == BigUnsigned<Base>(0)) {
+    if (denominator == BigUnsigned<Base>("0")) {
         throw std::invalid_argument("Denominator cannot be zero");
     }
     reduce();
@@ -23,8 +23,8 @@ BigRational<Base>::BigRational(const std::string& str) {
         throw std::invalid_argument("Invalid input string");
     }
     numerator = BigInteger<Base>(str.substr(0, pos));
-    denominator = BigUnsigned<Base>(str.substr(pos + 1));
-    if (denominator == BigUnsigned<Base>(0)) {
+    denominator = BigUnsigned<Base>(str.substr(pos + 1, str.size() - pos - 1));
+    if (denominator == BigUnsigned<Base>("0")) {
         throw std::invalid_argument("Denominator cannot be zero");
     }
     reduce();
@@ -235,6 +235,12 @@ bool BigRational<2>::operator>=(const BigRational<2>& other) const {
 // Método toString
 std::string BigRational<2>::toString() const {
     return numerator.toString() + "/" + denominator.toString();
+}
+
+// Definición del operador de inserción para BigRational con base 2
+std::ostream& operator<<(std::ostream& os, const BigRational<2>& num) {
+    os << num.toString();
+    return os;
 }
 
 // Método para reducir la fracción

@@ -134,6 +134,9 @@ int main(int argc, char* argv[]) {
         }
     }
 
+    std::cout << N1_str << std::endl;
+    std::cout << N2_str << std::endl;
+
     file.close();
 
     outputFile << std::boolalpha;

@@ -12,13 +12,13 @@ int main(int argc, const char *const argv[])
     return 1;
   }
 
-  NIF *sequence = new NIF[options->sequenceSize];
+  Persona *sequence = new Persona[options->sequenceSize];
   int n = options->sequenceSize;
 
   std::cout << "Initialazing sequence...\n";
   initilazingSequence(sequence, n, *options);
 
-  StaticSequence<NIF> sequenceObj(sequence, n);
+  StaticSequence<Persona> sequenceObj(sequence, n);
   sortingTipe(sequence, sequenceObj, n, *options);
 
   std::cout << "Sorted sequence: ";

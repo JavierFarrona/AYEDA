@@ -7,11 +7,11 @@
 class Persona {
   public:
     // Constructor por defecto
-    Persona() : nombre_(""), apellidos_(""), letra_(' ') {}
+    Persona() : nombre_(""), apellidos_(""), letra_(' '), key_() {}
 
     // Constructor parametrizado
     Persona(const std::string& nombre, const std::string& apellidos, const NIF& nif, char letra)
-        : nombre_(nombre), apellidos_(apellidos), nif_(nif), letra_(letra) {}
+        : nombre_(nombre), apellidos_(apellidos), nif_(nif), letra_(letra),  {}
 
     // Constructor de copia
     Persona(const Persona& other)
@@ -59,5 +59,5 @@ class Persona {
     std::string apellidos_;   // Apellidos de la persona
     NIF nif_;                 // NIF de la persona (usando la clase NIF)
     char letra_;              // Letra asociada al NIF
-    
+    long key_;             // Clave para la tabla hash (opcional)
 };
